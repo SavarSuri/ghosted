@@ -23,8 +23,14 @@ the actual pattern.
 
 Single-page vanilla HTML/CSS/JS, deployed on Vercel.
 
+## Security
+
+- All user-submitted content is HTML-escaped before rendering (stored XSS mitigation)
+- Length caps enforced client-side and at the database layer
+- Supabase RLS policies scope the public anon key to SELECT and INSERT only
+
 ## Roadmap
 
 - Company-level ghost-rate leaderboard
 - Response-time distribution per company
-- Basic submission rate limiting and input sanitization
+- Submission rate limiting
