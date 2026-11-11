@@ -6,9 +6,9 @@ create table if not exists submissions (
   company      text not null,
   role         text not null,
   outcome      text not null,
-  school_tier  text,
-  gpa_band     text,
-  class_year   int,
+  school       text,          -- school tier, e.g. 'State School', 'Ivy / Top 10'
+  gpa          text,          -- GPA band, e.g. '3.3–3.6'
+  year         text,          -- class year, e.g. 'Junior'
   note         text,
   created_at   timestamptz not null default now()
 );
@@ -16,7 +16,7 @@ create table if not exists submissions (
 -- Outcome is a closed set. Anything else is a bug in the client.
 alter table submissions
   add constraint outcome_valid
-  check (outcome in ('ghosted', 'rejected', 'interviewed', 'offer'));
+  check (outcome in ('ghosted', 'rejected', 'interview', 'offer'));
 
 -- Length constraints.
 -- These do not prevent XSS. They cap how much any single submission can carry,

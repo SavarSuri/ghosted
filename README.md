@@ -51,7 +51,7 @@ git clone https://github.com/SavarSuri/ghosted
 cd ghosted
 ```
 
-Create a `.env` from `.env.example` with your own Supabase project URL and anon key, then serve the directory with anything static:
+Create your own Supabase project and run [docs/schema.sql](docs/schema.sql) in its SQL editor. Then set `SUPABASE_URL` and `SUPABASE_KEY` near the top of the script in `index.html` to your project's URL and anon key, and serve the directory with anything static:
 
 ```bash
 python3 -m http.server 8000
