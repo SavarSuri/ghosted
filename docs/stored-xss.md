@@ -82,9 +82,9 @@ Encoding at **output**, not at input. Input filtering is the wrong place for thi
 
 ```sql
 ALTER TABLE submissions
-  ADD CONSTRAINT company_len CHECK (char_length(company) <= 120),
-  ADD CONSTRAINT role_len    CHECK (char_length(role)    <= 120),
-  ADD CONSTRAINT note_len    CHECK (char_length(note)    <= 500);
+  ADD CONSTRAINT company_len CHECK (char_length(company) <= 100),
+  ADD CONSTRAINT role_len    CHECK (char_length(role)    <= 100),
+  ADD CONSTRAINT note_len    CHECK (note IS NULL OR char_length(note) <= 500);
 ```
 
 This does not stop XSS. A short payload still fits. What it does is cap the blast radius of anything else that goes wrong, and it is a reasonable data-integrity rule regardless of security. Company names are not two kilobytes long.
